@@ -4,7 +4,6 @@
             <b> {{ $componentName }} | {{ $pageTitle }}</b>
         </h4>
     </div>
-    @include('common.searchbox')
 
     <button type="button" href="javascript:void(0)" class="btn btn-danger" data-toggle="modal" data-target="#theModal">
         Novo
