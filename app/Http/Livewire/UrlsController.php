@@ -10,15 +10,19 @@ class UrlsController extends Component
 {
     use WithPagination;
 
-    public $pageTitle, $componentName, $customFileName, $search, $selected_id;
+    public $pageTitle, $componentName, $customFileName, $emit, $selected_id;
     public $address, $status, $access_date_time, $image;
 
-    private $pagination = 5;
+    protected $listeners = [
+        'deleteRow' => 'destroy'
+    ];
+
+    private $pagination = 7;
 
     public function render()
     {
         $data = Url::orderBy('id', 'desc')->paginate($this->pagination);
-        return view('livewire.url.index', ['urls' => $data])
+        return view('livewire.url.index', ['dados' => $data])
             ->extends('layouts.app')
             ->section('content');
     }
@@ -55,6 +59,7 @@ class UrlsController extends Component
 
         $this->resetUI();
         $this->emit('url-added', 'URL Registrada');
+        return $this->emit();
     }
 
     public function resetUI()

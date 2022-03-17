@@ -5,7 +5,8 @@
         <input type="url" class="form-control" wire:model.lazy="address" id="address" placeholder="Digite sua URL.">
         @error('address')
             <span class="text-danger er">{{ $message }}</span>
-        @enderror        
+        @enderror   
+
     </div> 
 </form>
 @include('common.modalFooter')
