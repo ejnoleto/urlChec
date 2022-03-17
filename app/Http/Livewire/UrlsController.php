@@ -19,7 +19,10 @@ class UrlsController extends Component
 
     public function render()
     {
-        return view('livewire.url.index');
+        $data = Url::orderBy('id', 'desc')->paginate($this->pagination);
+        return view('livewire.url.index', ['urls' => $data])
+            ->extends('layouts.app')
+            ->section('content');
     }
 
 
