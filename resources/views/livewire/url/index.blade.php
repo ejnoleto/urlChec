@@ -1,11 +1,15 @@
-@extends('layouts.app')
-
-@section('content')
-
 <div>
-    <h4 class="card-title">
-        <b> {{ $componentName }} | {{ $pageTitle }}</b>
-    </h4>
+    <div class="widget-heading">
+        <h4 class="card-title">
+            <b> {{ $componentName }} | {{ $pageTitle }}</b>
+        </h4>
+    </div>
+    @include('common.searchbox')
+
+    <button type="button" href="javascript:void(0)" class="btn btn-danger" data-toggle="modal" data-target="#theModal">
+        Novo
+    </button>
+
     <table class="table striped mt-1">
         <thead>
         <tr>
@@ -25,17 +29,6 @@
                     <td >{{ $u->imagem }}</td>
                     <td class="text-center">
                         <a href="javascript:void(0)"
-                        wire:click="Edit({{ $u->id }})"
-                        class="btn btn-dark mtmobilie" title="Edit" data-toggle="modal" data-target="#theModal">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="feather feather-edit-3">
-                                    <path d="M12 20h9"></path>
-                                    <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
-                            </svg>
-                        </a>
-
-                        <a href="javascript:void(0)"
                         onclick="Confirm('{{ $u->id }}')"
                         class="btn btn-dark mtmobilie" title="Delete">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -53,43 +46,7 @@
             @endforeach
         </tbody>
     </table>
+    {{-- $urls->links() --}}
 
-   <script>
-        document.addEventListener('livewire:load', function() {
-
-            window.livewire.on('show-modal', msg => {
-                $('#theModal').modal('show');
-            })
-
-            window.livewire.on('address-added', msg => {
-                $('#theModal').modal('hide');
-            })
-
-            window.livewire.on('address-updated', msg => {
-                $('#theModal').modal('hide');
-            })
-
-        });
-
-        function Confirm(id) {
-            swal({
-                title: 'CONFIRMAR',
-                text: 'CONFIRMA DELETAR REGISTRO?',
-                type: 'warning',
-                icon: "error",
-                showCancelButton: true,
-                cancelButtonText: 'Cancelar',
-                cancelButtonColor: '#ffffff',
-                confirmButtonText: 'OK',
-                confirmButtonColor: '#3b3f5c'
-            }).then(function(result) {
-                if (result) {
-                    window.livewire.emit('deleteRow', id)
-                    swal.close()
-                }
-            })
-        }
-    </script>    
+    @include('livewire.url.form')   
 </div>
-
-@endsection

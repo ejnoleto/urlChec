@@ -6,8 +6,6 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Url;
 
-
-
 class UrlsController extends Component
 {
     use WithPagination;

@@ -14,16 +14,9 @@ use App\Http\Livewire\UrlsController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->middleware('auth');
-
-Route::get('url', UrlsController::class)
+Route::get('/', UrlsController::class)
     ->name('url')
     ->middleware('auth');
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Auth::routes(['register' => false]);
