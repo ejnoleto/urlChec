@@ -11,7 +11,7 @@ class UrlsController extends Component
     use WithPagination;
 
     public $pageTitle, $componentName, $customFileName, $emit, $selected_id;
-    public $address, $status, $access_date_time, $image;
+    public $address, $status, $access_date_time, $html_body;
 
     protected $listeners = [
         'deleteRow' => 'destroy'
@@ -59,7 +59,6 @@ class UrlsController extends Component
 
         $this->resetUI();
         $this->emit('url-added', 'URL Registrada');
-        return $this->emit();
     }
 
     public function resetUI()
@@ -86,7 +85,7 @@ class UrlsController extends Component
             'address' => $this->address,
             'status' => $this->status,
             'access_date_time' => $this->access_date_time,
-            'image' => $this->image
+            'html_body' => $this->html_body
         ]);
 
         $address->save();
@@ -101,5 +100,17 @@ class UrlsController extends Component
 
         $this->resetUI();
         $this->emit('address-deleted', 'URL deletada com sucesso.');
+    }
+
+    public function Detail($id)
+    {
+        $record = Url::find($id, [
+            'id', 'address', 'html_body'
+        ]);
+        $this->emit('show-detail', $record->html_body);
+    }
+
+    public function ShowDetail($id){
+
     }
 }

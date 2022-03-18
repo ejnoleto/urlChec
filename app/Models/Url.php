@@ -10,6 +10,6 @@ class Url extends Model
     use HasFactory;
 
     protected $fillable = [
-        'address', 'status', 'access_date_time', 'image'
+        'address', 'status', 'access_date_time', 'html_body'
     ];
 }

@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('urls', function (Blueprint $table) {
             $table->id();
             $table->text('address');
-            $table->boolean('status')->nullable();
+            $table->integer('status')->nullable();
             $table->dateTime('access_date_time')->nullable();
-            $table->string('image', 255)->nullable();
+            $table->text('html_body')->nullable();
             $table->timestamps();
         });
     }
