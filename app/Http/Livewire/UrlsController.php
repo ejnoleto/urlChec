@@ -58,7 +58,7 @@ class UrlsController extends Component
         $dados->save();
 
         $this->resetUI();
-        $this->emit('url-added', 'URL Registrada');
+        session()->flash('message', 'URL Registrada');
     }
 
     public function resetUI()
@@ -110,7 +110,7 @@ class UrlsController extends Component
         $this->emit('show-detail', $record->html_body);
     }
 
-    public function ShowDetail($id){
-
+    public function ShowDetail($id)
+    {
     }
 }

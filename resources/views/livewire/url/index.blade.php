@@ -54,11 +54,7 @@
   document.addEventListener('livewire:load', function() {
 
     window.livewire.on('show-modal', msg => {
-      $('#theModal').modal('hide');
-    })
-
-    window.livewire.on('url-added', msg => {
-      $('#theModal').modal('hide');
+        $('#theModal').modal('hide');
     })
 
     window.livewire.on('url-updated', msg => {
@@ -72,7 +68,6 @@
       })
     })
   });
-
 
   function Confirm(id) {
     swal({

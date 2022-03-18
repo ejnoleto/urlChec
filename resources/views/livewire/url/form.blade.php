@@ -1,4 +1,11 @@
 @include('common.modalHead')
+    <div>
+        @if (session()->has('message'))
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+        @endif
+    </div>
 <form action="" method="post">
     <div class="col-12">
         <label for="address" class="form-label">Url</label>
